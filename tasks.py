@@ -35,3 +35,23 @@ def test():
         print tweet
         text  = tweet['text'].encode('UTF-8', 'replace')
         print text
+
+
+@app.task
+def test():
+    import re
+    import collections
+    words = re.findall(r'\w+', open('tweets_1.txt').read().lower())
+    c = collections.Counter(words)
+    count = []
+    print c['id']
+    print 'hon:', c['hon']
+    print 'han:', c['han']
+    print 'hen:', c['hen']
+    print 'den:', c['den']
+    print 'denna:', c['denna']
+    print 'denne:', c['denne']
+    print 'det:', c['det']
+    total = c['hon'] + c['han']+ c['hen'] +c['den'] +c['denna'] +c['denne'] +c['det']
+    print 'total', total
+
