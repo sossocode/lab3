@@ -24,17 +24,6 @@ def read_line():
         #print match
         #tweets_hon = tweet['text'].apply(lambda tweet: word_in_text('python', $
 
-@app.task
-def test():
-    import re
-    f = open('tweets_1.txt', "r")
-    #line = f.readlines()
-    for line in f:
-        #print line
-        tweet = json.loads(line)
-        print tweet
-        text  = tweet['text'].encode('UTF-8', 'replace')
-        print text
 
 
 @app.task
