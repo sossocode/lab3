@@ -12,8 +12,8 @@ app  = Celery('tasks', backend= 'amqp', broker = 'amqp://')
 @app.task
 def count1():
   mesh = []
-  req = urllib2.Request("http://smog.uppmax.uu.se:8080/swift/v1/tweets")
-  response = urllib2.urlopen(req)
+  tweets = urllib2.Request("http://smog.uppmax.uu.se:8080/swift/v1/tweets")
+  response = urllib2.urlopen(tweets)
   meshObject = response.read().split()
   for t in meshObject:
      mesh.append(t)
@@ -35,16 +35,7 @@ def count1():
         read.s(F))
 
   meshTask = job.apply_async()
-
-  print "Celery is working..."
-  counter = 0
-  while (meshTask.ready() == False):
-      print "... %i s" %(counter)
-      counter += 5
-      time.sleep(5)
-
   results = meshTask.get()
-  names = []
   print results
 
 
